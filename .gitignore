@@ -12,4 +12,4 @@ yarn-error.log
 .env
 .access.log
 .error.log
-.comoser.phar
+.composer.phar
