@@ -10,4 +10,9 @@ class IndexController extends Controller
     {
         return view('index.index', ['msg' => 'Hello World!']);
     }
+
+    public function find(Request $request)
+    {
+        return view('index.index', ['msg' => $request->date]);
+    }
 }
