@@ -68,7 +68,7 @@ class Data implements DataInterface
         return $this->day;
     }
 
-    public function getMonday()
+    public function getIsCheckMonday()
     {
         return $this->monday;
     }

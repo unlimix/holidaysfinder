@@ -11,5 +11,5 @@ interface DataInterface
     public function getMonth();
     public function getWeek();
     public function getDay();
-    public function getMonday();
+    public function getIsCheckMonday();
 }

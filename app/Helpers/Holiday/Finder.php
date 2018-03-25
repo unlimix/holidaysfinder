@@ -27,9 +27,9 @@ class Finder
             return '';
         }
         $msg = 'Work day';
-
+        $searchDate = new \DateTime($request->date);
         foreach ($this->holidays as $holiday) {
-            if ($this->test($holiday, $request->date)) {
+            if ($this->test($holiday, $searchDate)) {
                 $msg = $holiday->getTitle();
                 break;
             }
@@ -40,32 +40,37 @@ class Finder
 
     /**
      * @param DataInterface $holiday
-     * @param string $date
+     * @param \DateTime $searchDate
      * @return boolean
      */
-    private function test(DataInterface $holiday, $date)
+    private function test(DataInterface $holiday, \DateTime $searchDate)
     {
+        $year = $searchDate->format('Y');
+
         switch ($holiday->getType()) {
             case 'day':
-                $date = new \DateTime($date);
-                $year = $date->format('Y');
                 $dateHoliday = new \DateTime($holiday->getDateFrom() . '.' . $year);
+                $isHoliday = $dateHoliday == $searchDate;
+                $dayOfWeekFirstDayOfMonth = date('w', strtotime($searchDate->format('d') . '.' . $searchDate->format('M') . '.' . $year));
+                if ($holiday->getIsCheckMonday()
+                    && false === $isHoliday
+                    && '1' == $dayOfWeekFirstDayOfMonth
+                ) {
 
-                return $dateHoliday == $date;
+                }
+                return $isHoliday;
                 break;
             case 'interval':
-                $date = new \DateTime($date);
-                $year = $date->format('Y');
                 $dateHolidayFrom = new \DateTime($holiday->getDateFrom() . '.' . $year);
                 $dateHolidayTo = new \DateTime($holiday->getDateTo() . '.' . $year);
 
-                return ($dateHolidayFrom <= $date) && ($date <= $dateHolidayTo);
+                return ($dateHolidayFrom <= $searchDate) && ($searchDate <= $dateHolidayTo);
                 break;
             case 'week':
                 $weekDay = $holiday->getDay() == '7'? '0' : $holiday->getDay();
                 if ('last' === $holiday->getWeek()) {
-                    $date = new \DateTime($date);
-                    $year = $date->format('Y');
+//                    $date = new \DateTime($date);
+                    $year = $searchDate->format('Y');
 
                     $lastDay = cal_days_in_month(CAL_GREGORIAN, $holiday->getMonth(), $year);
 
@@ -84,8 +89,8 @@ class Finder
 //                    exit();
                     $dateHoliday = new \DateTime($lastDay . '.' . $holiday->getMonth() . '.' . $year);
                 } else {
-                    $date = new \DateTime($date);
-                    $year = $date->format('Y');
+//                    $date = new \DateTime($date);
+                    $year = $searchDate->format('Y');
                     $j = 1;
                     for ($day = 1; $j <= (int)$weekDay; $day++) {
                         $dayOfWeekFirstDayOfMonth = date('w', strtotime($day . '.' . $holiday->getMonth() . '.' . $year));
@@ -125,7 +130,7 @@ class Finder
 //                if($day == $_day AND $week == $_week) {
 //                    return true;
 //                }
-                return $dateHoliday == $date;
+                return $dateHoliday == $searchDate;
                 break;
         }
 
