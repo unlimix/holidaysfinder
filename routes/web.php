@@ -12,4 +12,4 @@
 */
 
 Route::get('/', 'IndexController@index');
-Route::post('/find', 'IndexController@find');
+Route::post('/', 'IndexController@index');
