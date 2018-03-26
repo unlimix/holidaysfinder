@@ -10,7 +10,7 @@ class Data implements DataInterface
     private $dateTo;
     private $month;
     private $week;
-    private $day;
+    private $weekDay;
     private $monday;
 
     public function __construct($title,
@@ -19,7 +19,7 @@ class Data implements DataInterface
                                 $date_to,
                                 $month,
                                 $week,
-                                $day,
+                                $weekDay,
                                 $monday)
     {
         $this->title = $title;
@@ -28,7 +28,7 @@ class Data implements DataInterface
         $this->dateTo = $date_to;
         $this->month = $month;
         $this->week = $week;
-        $this->day = $day;
+        $this->weekDay = $weekDay;
         $this->monday = $monday;
 
     }
@@ -63,9 +63,9 @@ class Data implements DataInterface
         return $this->week;
     }
 
-    public function getDay()
+    public function getWeekDay()
     {
-        return $this->day;
+        return $this->weekDay == '7'? '0' : $this->weekDay;
     }
 
     public function getIsCheckMonday()
