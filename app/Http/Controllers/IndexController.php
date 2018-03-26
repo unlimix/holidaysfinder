@@ -19,8 +19,10 @@ class IndexController extends Controller
             $rules = [
                 'date' => 'required|date',
             ];
-
-            $this->validate($request, $rules);
+            $messages = [
+                'required' => 'The :attribute field is required.',
+            ];
+            $this->validate($request, $rules, $messages);
 
             return view('index.index', ['title' => $finder->getDayStatus($request)]);
         }
