@@ -8,6 +8,16 @@ interface HolidayInterface
     const TYPE_INTERVAL = 'interval';
     const TYPE_WEEK = 'week';
 
+    const MONDAY = '1';
+    const TUESDAY = '2';
+    const WEDNESDAY = '3';
+    const THURSDAY = '4';
+    const FRIDAY = '5';
+    const SATURDAY = '6';
+    const SUNDAY = '0';
+
+    const LAST_WEEK = 'last';
+
     /** @var string */
     public function getTitle();
 

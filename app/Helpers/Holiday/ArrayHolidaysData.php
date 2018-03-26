@@ -13,7 +13,7 @@ use App\Helpers\Holiday\Data\HolidayInterface;
  * Monday of the last week of March
  * Thursday of the 4th week of November
  */
-class HolidaysData implements HolidaysDataInterface
+class ArrayHolidaysData implements HolidaysDataInterface
 {
 
     /** @var array */
@@ -55,7 +55,7 @@ class HolidaysData implements HolidaysDataInterface
             'date_to' => '',
             'month' => '1',
             'week' => '3',
-            'weekDay' => '1',
+            'weekDay' => HolidayInterface::MONDAY,
             'monday' => false,
         ],
         [
@@ -64,8 +64,8 @@ class HolidaysData implements HolidaysDataInterface
             'date_from' => '',
             'date_to' => '',
             'month' => '3',
-            'week' => 'last',
-            'weekDay' => '1',
+            'week' => HolidayInterface::LAST_WEEK,
+            'weekDay' => HolidayInterface::MONDAY,
             'monday' => false,
         ],
         [
@@ -75,7 +75,7 @@ class HolidaysData implements HolidaysDataInterface
             'date_to' => '',
             'month' => '11',
             'week' => '4',
-            'weekDay' => '4',
+            'weekDay' => HolidayInterface::THURSDAY,
             'monday' => false,
         ],
     ];

@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Helpers\Holiday\Finder;
-use App\Helpers\Holiday\HolidaysData;
+use App\Helpers\Holiday\ArrayHolidaysData;
 
 class ArrayHolidayServiceProvider extends ServiceProvider
 {
@@ -26,7 +26,7 @@ class ArrayHolidayServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(Finder::class, function() {
-            return new Finder(new HolidaysData());
+            return new Finder(new ArrayHolidaysData());
         });
     }
 }

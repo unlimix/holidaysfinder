@@ -15,7 +15,17 @@ class IndexController extends Controller
      */
     public function index(Request $request, Finder $finder)
     {
-        return view('index.index', ['title' => $finder->getDayStatus($request)]);
+        if ($request->isMethod('post')) {
+            $rules = [
+                'date' => 'required|date',
+            ];
+
+            $this->validate($request, $rules);
+
+            return view('index.index', ['title' => $finder->getDayStatus($request)]);
+        }
+
+        return view('index.index', ['title' => '']);
     }
 
 }

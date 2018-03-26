@@ -112,7 +112,7 @@ class Holiday implements HolidayInterface
      */
     public function getWeekDay()
     {
-        return $this->weekDay == '7'? '0' : $this->weekDay;
+        return $this->weekDay;
     }
 
     /**

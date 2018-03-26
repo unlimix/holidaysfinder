@@ -38,7 +38,7 @@ class Finder
 
         foreach ($this->holidays as $holiday) {
             if ($this->checkHoliday($holiday, $searchDate)) {
-                $msg = 'It`s holiday ' . $searchDate->format('d.m.Y') . ': ' . $holiday->getTitle();
+                $msg = 'This is holiday ' . $searchDate->format('d.m.Y') . ': ' . $holiday->getTitle();
                 break;
             }
         }
