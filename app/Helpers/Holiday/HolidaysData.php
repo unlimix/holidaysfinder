@@ -2,6 +2,9 @@
 
 namespace App\Helpers\Holiday;
 
+use App\Helpers\Holiday\Data\Holiday;
+use App\Helpers\Holiday\Data\HolidayInterface;
+
 /**
  * 1st of January
  * 7th of January
@@ -17,7 +20,7 @@ class HolidaysData implements HolidaysDataInterface
     private $holidays = [
         [
             'title' => '1st of January',
-            'type' => DataInterface::TYPE_DAY,
+            'type' => HolidayInterface::TYPE_DAY,
             'date_from' => '1.01',
             'date_to' => '',
             'month' => '',
@@ -27,7 +30,7 @@ class HolidaysData implements HolidaysDataInterface
         ],
         [
             'title' => '7th of January',
-            'type' => DataInterface::TYPE_DAY,
+            'type' => HolidayInterface::TYPE_DAY,
             'date_from' => '7.01',
             'date_to' => '',
             'month' => '',
@@ -37,7 +40,7 @@ class HolidaysData implements HolidaysDataInterface
         ],
         [
             'title' => 'From 1st of May till 7th of May',
-            'type' => DataInterface::TYPE_INTERVAL,
+            'type' => HolidayInterface::TYPE_INTERVAL,
             'date_from' => '1.05',
             'date_to' => '7.05',
             'month' => '',
@@ -47,7 +50,7 @@ class HolidaysData implements HolidaysDataInterface
         ],
         [
             'title' => 'Monday of the 3rd week of January',
-            'type' => DataInterface::TYPE_WEEK,
+            'type' => HolidayInterface::TYPE_WEEK,
             'date_from' => '',
             'date_to' => '',
             'month' => '1',
@@ -57,7 +60,7 @@ class HolidaysData implements HolidaysDataInterface
         ],
         [
             'title' => 'Monday of the last week of March',
-            'type' => DataInterface::TYPE_WEEK,
+            'type' => HolidayInterface::TYPE_WEEK,
             'date_from' => '',
             'date_to' => '',
             'month' => '3',
@@ -67,7 +70,7 @@ class HolidaysData implements HolidaysDataInterface
         ],
         [
             'title' => 'Thursday of the 4th week of November',
-            'type' => DataInterface::TYPE_WEEK,
+            'type' => HolidayInterface::TYPE_WEEK,
             'date_from' => '',
             'date_to' => '',
             'month' => '11',
@@ -85,7 +88,7 @@ class HolidaysData implements HolidaysDataInterface
         $holidays = [];
 
         foreach ($this->holidays as $holiday) {
-            $holidays[] = new Data(
+            $holidays[] = new Holiday(
                 $holiday['title'],
                 $holiday['type'],
                 $holiday['date_from'],
