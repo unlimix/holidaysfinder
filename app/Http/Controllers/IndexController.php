@@ -15,7 +15,9 @@ class IndexController extends Controller
      */
     public function index(Request $request, Finder $finder)
     {
-        if ($request->isMethod('post')) {
+        $title = '';
+
+        if ($request->isMethod(Request::METHOD_POST)) {
             $rules = [
                 'date' => 'required|date',
             ];
@@ -24,10 +26,10 @@ class IndexController extends Controller
             ];
             $this->validate($request, $rules, $messages);
 
-            return view('index.index', ['title' => $finder->getDayStatus($request)]);
+            $title = $finder->getDayStatus($request);
         }
 
-        return view('index.index', ['title' => '']);
+        return view('index.index', ['title' => $title]);
     }
 
 }
