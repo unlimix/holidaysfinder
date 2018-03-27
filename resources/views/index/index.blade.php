@@ -17,7 +17,7 @@
         </div>
     @endif
     {!! Form::open(['url' => '/']) !!}
-    {!! Form::date('date') !!}
+    {!! Form::text('date') !!}
     {!! Form::submit('send') !!}
     {!! Form::close() !!}
 @endsection('content')
